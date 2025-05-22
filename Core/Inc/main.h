@@ -67,6 +67,10 @@ void Error_Handler(void);
 #define ULTRASOUND_ECHO_GPIO_Port GPIOA
 #define SERVO_Pin GPIO_PIN_10
 #define SERVO_GPIO_Port GPIOB
+#define KEY3_Pin GPIO_PIN_4
+#define KEY3_GPIO_Port GPIOG
+#define KEY4_Pin GPIO_PIN_5
+#define KEY4_GPIO_Port GPIOG
 #define LED3_Pin GPIO_PIN_6
 #define LED3_GPIO_Port GPIOG
 #define LED4_Pin GPIO_PIN_11
