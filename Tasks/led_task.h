@@ -47,5 +47,6 @@ void led_running_mode_control(void);
 void led_water_mode_control(void);
 extern void led_task(void const *pvParameters);
 extern void led_task_update(void);
+extern void set_idel_mode(led_idle_mode_e mode);
 
 #endif

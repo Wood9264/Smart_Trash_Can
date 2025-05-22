@@ -27,6 +27,7 @@
 /* USER CODE BEGIN Includes */
 #include "trash_can_task.h"
 #include "led_task.h"
+#include "echo.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -48,6 +49,7 @@
 /* USER CODE BEGIN Variables */
 osThreadId trashCanTaskHandle;
 osThreadId ledTaskHandle;
+osThreadId echoTaskHandle;
 /* USER CODE END Variables */
 osThreadId defaultTaskHandle;
 
@@ -113,6 +115,9 @@ void MX_FREERTOS_Init(void) {
 
   osThreadDef(ledTask, led_task, osPriorityNormal, 0, 128);
   ledTaskHandle = osThreadCreate(osThread(ledTask), NULL);
+
+  osThreadDef(echoTask, echo_task, osPriorityNormal, 0, 128);
+  echoTaskHandle = osThreadCreate(osThread(echoTask), NULL);
   /* USER CODE END RTOS_THREADS */
 
 }

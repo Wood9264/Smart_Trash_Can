@@ -116,6 +116,11 @@ void led_running_mode_control(void)
 
 void led_water_mode_control(void)
 {
+    led_off(1);
+    led_off(2);
+    led_off(3);
+    led_off(4);
+    vTaskDelay(LED_WATER_MODE_TIME);
     led_on(1);
     led_off(2);
     led_off(3);
@@ -172,5 +177,9 @@ void led_full_mode_control(void)
 
 void set_idel_mode(led_idle_mode_e mode)
 {
+    if (mode > LED_IDLE_MODE_WATER)
+    {
+        return;
+    }
     led_task_instance.idle_mode = mode;
 }
