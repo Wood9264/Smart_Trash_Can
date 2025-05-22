@@ -57,8 +57,14 @@ void Error_Handler(void);
 /* USER CODE END EFP */
 
 /* Private defines -----------------------------------------------------------*/
+#define ULTRASOUND_TRIG_Pin GPIO_PIN_6
+#define ULTRASOUND_TRIG_GPIO_Port GPIOE
 #define HUMAN_SENSOR_Pin GPIO_PIN_2
 #define HUMAN_SENSOR_GPIO_Port GPIOA
+#define ULTRASOUND_ECHO_Pin GPIO_PIN_6
+#define ULTRASOUND_ECHO_GPIO_Port GPIOA
+#define SERVO_Pin GPIO_PIN_10
+#define SERVO_GPIO_Port GPIOB
 #define LED3_Pin GPIO_PIN_6
 #define LED3_GPIO_Port GPIOG
 #define LED4_Pin GPIO_PIN_11

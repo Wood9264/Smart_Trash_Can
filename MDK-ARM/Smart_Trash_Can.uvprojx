@@ -579,6 +579,11 @@
               <FileType>1</FileType>
               <FilePath>..\Modules\servo.c</FilePath>
             </File>
+            <File>
+              <FileName>ultrasound.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Modules\ultrasound.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
