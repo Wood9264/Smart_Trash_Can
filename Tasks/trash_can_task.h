@@ -11,7 +11,7 @@
 #include "ultrasound.h"
 
 // 垃圾桶满桶触发距离
-#define CAN_FULL_DISTANCE 10
+#define CAN_FULL_DISTANCE 7
 // 垃圾桶开盖延时，单位为ms
 #define CAN_OPEN_DELAY 2000
 

@@ -5,7 +5,7 @@
 #include "tim.h"
 
 //桶盖开启的脉宽
-#define SERVO_ON_PULSE 2500
+#define SERVO_ON_PULSE 2300
 //桶盖关闭的脉宽
 #define SERVO_OFF_PULSE 1500
 
