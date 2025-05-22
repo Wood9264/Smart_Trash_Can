@@ -43,15 +43,15 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
 
         if (rx_data == '1')
         {
-            set_idel_mode((led_idle_mode_e)LED_IDLE_MODE_BREATHING);
+            set_idel_mode(LED_IDLE_MODE_BREATHING);
         }
         else if (rx_data == '2')
         {
-            set_idel_mode((led_idle_mode_e)LED_IDLE_MODE_RUNNING);
+            set_idel_mode(LED_IDLE_MODE_RUNNING);
         }
         else if (rx_data == '3')
         {
-            set_idel_mode((led_idle_mode_e)LED_IDLE_MODE_WATER);
+            set_idel_mode(LED_IDLE_MODE_WATER);
         }
     }
 }
