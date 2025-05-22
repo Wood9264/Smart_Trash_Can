@@ -2,9 +2,15 @@
 #define __TRASH_CAN_TASK_H__
 
 #include "stm32f4xx.h"
+#include "FreeRTOS.h"
+#include "task.h"
+#include "human_sensor.h"
+#include "beep.h"
+#include "servo.h"
+#include "key.h"
+#include "ultrasound.h"
 
-#define HUMAN_SENSOR_PIN GPIO_Pin_8
-#define HUMAN_SENSOR_PORT GPIOB
+#define CAN_FULL_DISTANCE 10
 
 struct trash_can_task_t
 {
@@ -15,8 +21,11 @@ struct trash_can_task_t
     uint8_t junk_distance;
 };
 
+void update(void);
+void control(void);
+
 extern struct trash_can_task_t trash_can_task_instance;
 extern void trash_can_task_init(void);
-extern void trash_can_task(void);
+extern void trash_can_task(void const *pvParameters);
 
 #endif

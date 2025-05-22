@@ -3,4 +3,6 @@
 
 #include "main.h"
 
+extern uint8_t human_sensor_read(void);
+
 #endif

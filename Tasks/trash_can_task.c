@@ -2,6 +2,22 @@
 
 struct trash_can_task_t trash_can_task_instance;
 
+void trash_can_task(void const *pvParameters)
+{
+    trash_can_task_init();
+    ultrasound_trig_start();
+    ultrasound_echo_start();
+    servo_init();
+    beep_init();
+    vTaskDelay(100);
+    while (1)
+    {
+        update();
+        control();
+        vTaskDelay(10);
+    }
+}
+
 void trash_can_task_init()
 {
     trash_can_task_instance.should_can_open = 0;
@@ -9,22 +25,63 @@ void trash_can_task_init()
     trash_can_task_instance.if_human_detected = 0;
     trash_can_task_instance.junk_distance = 0;
 }
-uint8_t test = 0;
-void trash_can_task()
+
+void update()
 {
-    test = GPIO_ReadInputDataBit(HUMAN_SENSOR_PORT, HUMAN_SENSOR_PIN);
+    trash_can_task_instance.if_human_detected = human_sensor_read();
+    trash_can_task_instance.junk_distance = ultrasound_get_distance();
+
+    if (trash_can_task_instance.junk_distance < CAN_FULL_DISTANCE)
+    {
+        trash_can_task_instance.is_can_full = 1;
+    }
+
+    if(key_read(4))
+    {
+        trash_can_task_instance.is_can_full = 0;
+    }
+
+    if (!trash_can_task_instance.is_can_full)
+    {
+        if (trash_can_task_instance.if_human_detected || key_read(3))
+        {
+            trash_can_task_instance.should_can_open = 1;
+        }
+        else
+        {
+            trash_can_task_instance.should_can_open = 0;
+        }
+    }
+    else
+    {
+        if (key_read(3))
+        {
+            trash_can_task_instance.should_can_open = 1;
+        }
+        else
+        {
+            trash_can_task_instance.should_can_open = 0;
+        }
+    }
 }
 
-void human_sensor_init()
+void control()
 {
-    GPIO_InitTypeDef GPIO_InitStruct;
+    if (trash_can_task_instance.should_can_open)
+    {
+        servo_on();
+    }
+    else
+    {
+        servo_off();
+    }
 
-    RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOB, ENABLE);
-
-    GPIO_InitStruct.GPIO_Pin = HUMAN_SENSOR_PIN;
-    GPIO_InitStruct.GPIO_Mode = GPIO_Mode_IN;
-    GPIO_InitStruct.GPIO_Speed = GPIO_High_Speed;
-    GPIO_InitStruct.GPIO_OType = GPIO_OType_PP;
-    GPIO_InitStruct.GPIO_PuPd = GPIO_PuPd_NOPULL;
-    GPIO_Init(HUMAN_SENSOR_PORT, &GPIO_InitStruct);
+    if (trash_can_task_instance.is_can_full)
+    {
+        beep_on();
+    }
+    else
+    {
+        beep_off();
+    }
 }
