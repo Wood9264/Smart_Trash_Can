@@ -81,7 +81,7 @@ void Error_Handler(void);
 #define LED1_GPIO_Port GPIOG
 
 /* USER CODE BEGIN Private defines */
-
+#define bool_t uint8_t
 /* USER CODE END Private defines */
 
 #ifdef __cplusplus

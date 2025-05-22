@@ -3,6 +3,6 @@
 
 #include "main.h"
 
-extern uint8_t key_read(uint8_t key);
+extern bool_t key_read(uint8_t key);
 
 #endif

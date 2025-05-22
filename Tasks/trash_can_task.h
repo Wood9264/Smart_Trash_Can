@@ -14,10 +14,10 @@
 
 struct trash_can_task_t
 {
-    uint8_t should_can_open;
-    uint8_t is_can_full;
+    bool_t should_can_open;
+    bool_t is_can_full;
 
-    uint8_t if_human_detected;
+    bool_t if_human_detected;
     uint8_t junk_distance;
 };
 

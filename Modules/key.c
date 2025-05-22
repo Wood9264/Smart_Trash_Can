@@ -1,6 +1,6 @@
 #include "key.h"
 
-uint8_t key_read(uint8_t key)
+bool_t key_read(uint8_t key)
 {
     switch (key)
     {
