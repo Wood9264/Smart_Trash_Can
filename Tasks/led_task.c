@@ -13,12 +13,18 @@ void led_task(void const *pvParameters)
     }
 }
 
+/**
+ * @brief  LED任务初始化
+ */
 void led_task_init(void)
 {
     led_task_instance.state = LED_STATE_IDLE;
     led_task_instance.idle_mode = LED_IDLE_MODE_BREATHING;
 }
 
+/**
+ * @brief  LED任务数据更新
+ */
 void led_task_update()
 {
     if (get_can_full_state())
@@ -35,6 +41,9 @@ void led_task_update()
     }
 }
 
+/**
+ * @brief  LED任务控制
+ */
 void led_task_control()
 {
     switch (led_task_instance.state)
@@ -53,6 +62,9 @@ void led_task_control()
     }
 }
 
+/**
+ * @brief  LED灯空闲模式控制
+ */
 void led_idle_mode_control(void)
 {
     switch (led_task_instance.idle_mode)
@@ -71,10 +83,13 @@ void led_idle_mode_control(void)
     }
 }
 
+/**
+ * @brief  LED呼吸灯
+ */
 void led_breathing_mode_control(void)
 {
     static uint32_t time = 0;
-    static float duty_cycle = 0.0f;
+    static float duty_cycle = 0.0f; //占空比
 
     time++;
     duty_cycle = sin(time / 5.0f) / 2.0f + 0.5f;
@@ -90,6 +105,9 @@ void led_breathing_mode_control(void)
     vTaskDelay(5 * (1 - duty_cycle));
 }
 
+/**
+ * @brief  LED跑马灯
+ */
 void led_running_mode_control(void)
 {
     led_on(1);
@@ -114,6 +132,9 @@ void led_running_mode_control(void)
     vTaskDelay(LED_RUNNING_MODE_TIME);
 }
 
+/**
+ * @brief  LED流水灯
+ */
 void led_water_mode_control(void)
 {
     led_off(1);
@@ -143,6 +164,9 @@ void led_water_mode_control(void)
     vTaskDelay(LED_WATER_MODE_TIME);
 }
 
+/**
+ * @brief  LED灯开盖模式控制
+ */
 void led_open_mode_control(void)
 {
     if (get_human_sensor_state())
@@ -161,6 +185,9 @@ void led_open_mode_control(void)
     }
 }
 
+/**
+ * @brief  LED灯满桶模式控制
+ */
 void led_full_mode_control(void)
 {
     led_on(1);
@@ -175,6 +202,10 @@ void led_full_mode_control(void)
     vTaskDelay(LED_FULL_MODE_TIME);
 }
 
+/**
+ * @brief  设置LED灯的空闲模式
+ * @param  mode: LED灯空闲模式
+ */
 void set_idel_mode(led_idle_mode_e mode)
 {
     if (mode > LED_IDLE_MODE_WATER)

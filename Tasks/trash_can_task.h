@@ -10,7 +10,9 @@
 #include "key.h"
 #include "ultrasound.h"
 
+// 垃圾桶满桶触发距离
 #define CAN_FULL_DISTANCE 10
+// 垃圾桶开盖延时，单位为ms
 #define CAN_OPEN_DELAY 2000
 
 struct trash_can_task_t
@@ -21,6 +23,7 @@ struct trash_can_task_t
     bool_t if_human_detected;
     uint8_t junk_distance;
 
+    // 垃圾桶开盖触发时的时间
     uint32_t can_open_trigger_time;
 };
 

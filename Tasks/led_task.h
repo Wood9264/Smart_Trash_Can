@@ -14,8 +14,11 @@
 
 typedef enum
 {
+    //空闲状态
     LED_STATE_IDLE = 0,
+    //开盖状态
     LED_STATE_OPEN,
+    //满桶状态
     LED_STATE_FULL,
 } led_state_e;
 
@@ -31,7 +34,9 @@ typedef enum
 
 struct led_task_t
 {
+    // LED灯状态
     led_state_e state;
+    // LED灯空闲模式
     led_idle_mode_e idle_mode;
 };
 

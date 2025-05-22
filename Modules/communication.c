@@ -23,11 +23,18 @@ PUTCHAR_PROTOTYPE
 
 uint8_t rx_data;
 
+/**
+ * @brief  初始化串口接收
+ */
 void communication_init(void)
 {
     HAL_UART_Receive_IT(&huart1, (uint8_t *)&rx_data, 1);
 }
 
+/**
+ * @brief  串口接收完成回调函数
+ * @param  huart: UART句柄
+ */
 void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
 {
     if (huart->Instance == USART1)

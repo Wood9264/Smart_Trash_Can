@@ -1,5 +1,9 @@
 #include "key.h"
 
+/**
+ * @brief  读取按键状态
+ * @param  key: 按键编号
+ */
 bool_t key_read(uint8_t key)
 {
     switch (key)

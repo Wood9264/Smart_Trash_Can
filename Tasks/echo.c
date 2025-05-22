@@ -11,6 +11,9 @@ void echo_task(void const *pvParameters)
     }
 }
 
+/**
+ * @brief  串口回显
+ */
 void send_echo(void)
 {
     printf("[human state] ");
