@@ -12,8 +12,8 @@ void trash_can_task(void const *pvParameters)
     vTaskDelay(100);
     while (1)
     {
-        update();
-        control();
+        trash_can_task_update();
+        trash_can_task_control();
         vTaskDelay(10);
     }
 }
@@ -26,7 +26,7 @@ void trash_can_task_init()
     trash_can_task_instance.junk_distance = 0;
 }
 
-void update()
+void trash_can_task_update()
 {
     trash_can_task_instance.if_human_detected = human_sensor_read();
     trash_can_task_instance.junk_distance = ultrasound_get_distance();
@@ -65,7 +65,7 @@ void update()
     }
 }
 
-void control()
+void trash_can_task_control()
 {
     if (trash_can_task_instance.should_can_open)
     {
@@ -84,4 +84,19 @@ void control()
     {
         beep_off();
     }
+}
+
+bool_t get_can_open_state()
+{
+    return trash_can_task_instance.should_can_open;
+}
+
+bool_t get_can_full_state()
+{
+    return trash_can_task_instance.is_can_full;
+}
+
+bool_t get_human_sensor_state()
+{
+    return trash_can_task_instance.if_human_detected;
 }

@@ -21,11 +21,16 @@ struct trash_can_task_t
     uint8_t junk_distance;
 };
 
-void update(void);
-void control(void);
+void trash_can_task_update(void);
+void trash_can_task_control(void);
 
 extern struct trash_can_task_t trash_can_task_instance;
 extern void trash_can_task_init(void);
 extern void trash_can_task(void const *pvParameters);
+extern void trash_can_task_control(void);
+extern void trash_can_task_update(void);
+extern bool_t get_can_full_state(void);
+extern bool_t get_can_open_state(void);
+extern bool_t get_human_sensor_state(void);
 
 #endif
