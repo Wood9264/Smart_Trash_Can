@@ -61,6 +61,8 @@ void Error_Handler(void);
 #define ULTRASOUND_TRIG_GPIO_Port GPIOE
 #define HUMAN_SENSOR_Pin GPIO_PIN_2
 #define HUMAN_SENSOR_GPIO_Port GPIOA
+#define BEEP_Pin GPIO_PIN_5
+#define BEEP_GPIO_Port GPIOA
 #define ULTRASOUND_ECHO_Pin GPIO_PIN_6
 #define ULTRASOUND_ECHO_GPIO_Port GPIOA
 #define SERVO_Pin GPIO_PIN_10

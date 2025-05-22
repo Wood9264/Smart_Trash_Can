@@ -701,6 +701,11 @@
               <FileType>1</FileType>
               <FilePath>..\Modules\communication.c</FilePath>
             </File>
+            <File>
+              <FileName>beep.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Modules\beep.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
