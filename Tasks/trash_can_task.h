@@ -11,6 +11,7 @@
 #include "ultrasound.h"
 
 #define CAN_FULL_DISTANCE 10
+#define CAN_OPEN_DELAY 2000
 
 struct trash_can_task_t
 {
@@ -19,6 +20,8 @@ struct trash_can_task_t
 
     bool_t if_human_detected;
     uint8_t junk_distance;
+
+    uint32_t can_open_trigger_time;
 };
 
 void trash_can_task_update(void);

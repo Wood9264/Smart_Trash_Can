@@ -41,9 +41,14 @@ void trash_can_task_update()
         trash_can_task_instance.is_can_full = 0;
     }
 
+    if (trash_can_task_instance.if_human_detected)
+    {
+        trash_can_task_instance.can_open_trigger_time = xTaskGetTickCount();
+    }
+
     if (!trash_can_task_instance.is_can_full)
     {
-        if (trash_can_task_instance.if_human_detected || key_read(3))
+        if ((xTaskGetTickCount() - trash_can_task_instance.can_open_trigger_time < CAN_OPEN_DELAY) || key_read(3))
         {
             trash_can_task_instance.should_can_open = 1;
         }
