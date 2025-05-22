@@ -31,12 +31,12 @@ void trash_can_task_update()
     trash_can_task_instance.if_human_detected = human_sensor_read();
     trash_can_task_instance.junk_distance = ultrasound_get_distance();
 
-    if (trash_can_task_instance.junk_distance < CAN_FULL_DISTANCE)
+    if (trash_can_task_instance.junk_distance < CAN_FULL_DISTANCE && !trash_can_task_instance.should_can_open)
     {
         trash_can_task_instance.is_can_full = 1;
     }
 
-    if(key_read(4))
+    if (key_read(4))
     {
         trash_can_task_instance.is_can_full = 0;
     }
